@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using static System.Console;
+
 namespace Task12
 {
     class Program
@@ -40,7 +42,7 @@ namespace Task12
             int[] result = new int[array.Length];
             array.CopyTo(result, 0);
             bool swapped;
-
+            
             do
             {
                 swapped = false;
@@ -48,13 +50,13 @@ namespace Task12
                 {
                     if(result[i] > result[i + 1])
                     {
-                        comparisons++;
                         int temp = result[i];
                         result[i] = result[i + 1];
                         result[i + 1] = temp;
                         swaps++;
                         swapped = true;
                     }
+                    comparisons++;
                 }
 
                 if (!swapped)
@@ -65,21 +67,56 @@ namespace Task12
                 {
                     if (result[i] > result[i + 1])
                     {
-                        comparisons++;
                         int temp = result[i];
                         result[i] = result[i + 1];
                         result[i + 1] = temp;
                         swaps++;
                         swapped = true;
                     }
+                    comparisons++;
                 }
             } while (swapped);
 
             return result;
         }
 
+        static Random R = new Random();
+
         static void Main(string[] args)
         {
+            WriteLine("Введите длину массива");
+            int length = 0;
+            while (!int.TryParse(ReadLine(),out length) || length > 0)
+                WriteLine(" Неправильный ввод, ожидалось положительное число");
+
+            int[] array = new int[length];
+            for (int i = 0; i < length; i++)
+                array[i] = R.Next(-100, 101);
+            WriteLine("Ваш массив: ");
+            WriteLine(string.Join(" ",array.AsEnumerable()));
+
+            WriteLine("Перемешивание:");
+            int c1, s1;
+            int[] arr1 = CocktailSort(array, out c1, out s1);
+            WriteLine("Случайный массив:\n{0} сравнений\n{1} перестановок",c1,s1);
+            arr1 = CocktailSort(array, out c1, out s1);
+            WriteLine("Отсортированный массив:\n{0} сравнений\n{1} перестановок", c1, s1);
+            arr1 = arr1.Reverse().ToArray();
+            arr1 = CocktailSort(array, out c1, out s1);
+            WriteLine("Перевёрнутый массив:\n{0} сравнений\n{1} перестановок", c1, s1);
+
+            WriteLine("Сортировка вставками");
+            int c2, s2;
+            int[] arr2 = InsertionSort(array, out c2, out s2);
+            WriteLine("Случайный массив:\n{0} сравнений\n{1} перестановок", c1, s1);
+            arr2 = InsertionSort(array, out c1, out s1);
+            WriteLine("Отсортированный массив:\n{0} сравнений\n{1} перестановок", c1, s1);
+            arr2 = arr2.Reverse().ToArray();
+            arr2 = InsertionSort(array, out c1, out s1);
+            WriteLine("Перевёрнутый массив:\n{0} сравнений\n{1} перестановок", c1, s1);
+
+
+
         }
     }
 }
