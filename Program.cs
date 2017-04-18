@@ -115,7 +115,7 @@ namespace Task12
             arr2 = InsertionSort(array, out c1, out s1);
             WriteLine("Перевёрнутый массив:\n{0} сравнений\n{1} перестановок", c1, s1);
 
-
+            ReadKey(true);
 
         }
     }
