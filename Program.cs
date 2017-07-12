@@ -86,7 +86,7 @@ namespace Task12
         {
             WriteLine("Введите длину массива");
             int length = 0;
-            while (!int.TryParse(ReadLine(),out length) || length > 0)
+            while (!int.TryParse(ReadLine(),out length) || length <= 0)
                 WriteLine(" Неправильный ввод, ожидалось положительное число");
 
             int[] array = new int[length];
@@ -94,25 +94,27 @@ namespace Task12
                 array[i] = R.Next(-100, 101);
             WriteLine("Ваш массив: ");
             WriteLine(string.Join(" ",array.AsEnumerable()));
+            WriteLine();
 
             WriteLine("Перемешивание:");
             int c1, s1;
             int[] arr1 = CocktailSort(array, out c1, out s1);
             WriteLine("Случайный массив:\n{0} сравнений\n{1} перестановок",c1,s1);
-            arr1 = CocktailSort(array, out c1, out s1);
+            arr1 = CocktailSort(arr1, out c1, out s1);
             WriteLine("Отсортированный массив:\n{0} сравнений\n{1} перестановок", c1, s1);
-            arr1 = arr1.Reverse().ToArray();
-            arr1 = CocktailSort(array, out c1, out s1);
+            Array.Reverse(arr1);
+            arr1 = CocktailSort(arr1, out c1, out s1);
             WriteLine("Перевёрнутый массив:\n{0} сравнений\n{1} перестановок", c1, s1);
+            WriteLine();
 
             WriteLine("Сортировка вставками");
             int c2, s2;
             int[] arr2 = InsertionSort(array, out c2, out s2);
             WriteLine("Случайный массив:\n{0} сравнений\n{1} перестановок", c1, s1);
-            arr2 = InsertionSort(array, out c1, out s1);
+            arr2 = InsertionSort(arr2, out c1, out s1);
             WriteLine("Отсортированный массив:\n{0} сравнений\n{1} перестановок", c1, s1);
-            arr2 = arr2.Reverse().ToArray();
-            arr2 = InsertionSort(array, out c1, out s1);
+            Array.Reverse(arr2);
+            arr2 = InsertionSort(arr2, out c1, out s1);
             WriteLine("Перевёрнутый массив:\n{0} сравнений\n{1} перестановок", c1, s1);
 
             ReadKey(true);
