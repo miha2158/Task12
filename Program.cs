@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using static System.Console;
 
@@ -93,7 +89,7 @@ namespace Task12
             for (int i = 0; i < length; i++)
                 array[i] = R.Next(-100, 101);
             WriteLine("Ваш массив: ");
-            WriteLine(string.Join(" ",array.AsEnumerable()));
+            WriteLine(string.Join(" ",array));
             WriteLine();
 
             WriteLine("Перемешивание:");
