@@ -80,17 +80,26 @@ namespace Task12
 
         static void Main(string[] args)
         {
-            WriteLine("Введите длину массива");
-            int length = 0;
-            while (!int.TryParse(ReadLine(),out length) || length <= 0)
-                WriteLine(" Неправильный ввод, ожидалось положительное число");
+            int[] array;
+            do
+            {
+                WriteLine("Введите длину массива");
+                int length = 0;
+                while (!int.TryParse(ReadLine(), out length) || length <= 0)
+                    WriteLine(" Неправильный ввод, ожидалось положительное число");
 
-            int[] array = new int[length];
-            for (int i = 0; i < length; i++)
-                array[i] = R.Next(-100, 101);
-            WriteLine("Ваш массив: ");
-            WriteLine(string.Join(" ",array));
-            WriteLine();
+
+                array = new int[length];
+
+                for (int i = 0; i < length; i++)
+                    array[i] = R.Next(-100, 101);
+
+                WriteLine("Ваш массив: ");
+                WriteLine(string.Join(" ", array));
+                WriteLine("Нажмите клавишу N чтобы создать другой массив");
+                WriteLine();
+            }
+            while (ReadKey(true).Key == ConsoleKey.N);
 
             WriteLine("Перемешивание:");
             int c1, s1;
